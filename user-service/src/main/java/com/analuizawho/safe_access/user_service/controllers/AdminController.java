@@ -31,19 +31,19 @@ public class AdminController {
         return ResponseEntity.ok(admin);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     public ResponseEntity<InfoAdminDTO> updateAdmin(@PathVariable Long id, @RequestBody UpdateAdminDTO updateDTO){
         var admin = service.updateAdmin(id, updateDTO);
         return ResponseEntity.ok(admin);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("activate/{id}")
     public ResponseEntity<Void> activateAdmin(Long id){
         service.activateAdmin(id);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("deactivate/{id}")
     public ResponseEntity<Void> softDeleteAdmin(@PathVariable Long id){
         service.softDeleteAdmin(id);
         return ResponseEntity.noContent().build();
