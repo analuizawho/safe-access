@@ -5,8 +5,7 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "user")
+@MappedSuperclass
 public abstract class User {
 
     @Id
