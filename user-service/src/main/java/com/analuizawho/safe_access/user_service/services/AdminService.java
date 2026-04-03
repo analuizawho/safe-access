@@ -5,9 +5,12 @@ import com.analuizawho.safe_access.user_service.dtos.InfoAdminDTO;
 import com.analuizawho.safe_access.user_service.dtos.UpdateAdminDTO;
 import com.analuizawho.safe_access.user_service.mappers.AdminMapper;
 import com.analuizawho.safe_access.user_service.repository.AdminRepository;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 @Service
 public class AdminService {
@@ -35,6 +38,12 @@ public class AdminService {
         var admin = repository.getReferenceById(id);
 
         return mapper.toInfo(admin);
+    }
+
+    @Transactional
+    public List<InfoAdminDTO> listAdmin(){
+        var admin = repository.findAllByUserActiveTrue();
+        return mapper.toList(admin);
     }
 
     @Transactional

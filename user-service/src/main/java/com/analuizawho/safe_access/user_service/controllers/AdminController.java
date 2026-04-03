@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("user-service/admin")
 public class AdminController {
@@ -28,6 +30,11 @@ public class AdminController {
     @GetMapping("/{id}")
     public ResponseEntity<InfoAdminDTO> infoAdmin(Long id ){
         var admin = service.infoAdmin(id);
+        return ResponseEntity.ok(admin);
+    }
+    @GetMapping("/list/{id}")
+    public ResponseEntity<List<InfoAdminDTO>> listAdmin(){
+        var admin = service.listAdmin();
         return ResponseEntity.ok(admin);
     }
 
