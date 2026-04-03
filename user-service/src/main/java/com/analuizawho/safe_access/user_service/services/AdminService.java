@@ -42,14 +42,14 @@ public class AdminService {
 
     @Transactional
     public List<InfoAdminDTO> listAdmin(){
-        var admin = repository.findAllByUserActiveTrue();
+        var admin = repository.findAllByAdminActiveTrue();
         return mapper.toList(admin);
     }
 
     @Transactional
     public InfoAdminDTO updateAdmin(Long id, UpdateAdminDTO updateDTO){
         var admin = repository.getReferenceById(id);
-        admin.updateInfo(updateDTO);
+        admin.updateAdminInfo(updateDTO);
         admin = repository.save(admin);
         return mapper.toInfo(admin);
     }

@@ -65,7 +65,7 @@ public class Admin {
         this.userActive = false;
     }
 
-    public void updateInfo(UpdateAdminDTO infoData){
+    public void updateAdminInfo(UpdateAdminDTO infoData){
         if(infoData.name() != null){
             this.name = infoData.name();
         }
