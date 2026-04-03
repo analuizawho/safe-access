@@ -1,70 +1,27 @@
 package com.analuizawho.safe_access.user_service.entities;
 
-import com.analuizawho.safe_access.user_service.dtos.UpdateAdminDTO;
 import com.analuizawho.safe_access.user_service.dtos.UpdateEmployeeDTO;
 import com.analuizawho.safe_access.user_service.entities.enums.Department;
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class Employee extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
     private String position;
-    @Enumerated(EnumType.STRING)
-    private Department department;
     private LocalDateTime entryTime;
     private LocalDateTime exitTime;
-    private String password;
-    private Boolean employeeActive;
 
     public Employee() {
+        super();
     }
 
-    public Employee(Long id, String name, String position, Department department,
-                    LocalDateTime entryTime, LocalDateTime exitTime, String password, Boolean employeeActive) {
-        this.id = id;
-        this.name = name;
+    public Employee(Long id, String name, Department department, String password, Boolean userActive, String position, LocalDateTime entryTime, LocalDateTime exitTime) {
+        super(id, name, department, password, userActive);
         this.position = position;
-        this.department = department;
         this.entryTime = entryTime;
         this.exitTime = exitTime;
-        this.password = password;
-        this.employeeActive = employeeActive;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 
     public LocalDateTime getEntryTime() {
@@ -83,20 +40,12 @@ public class Employee {
         this.exitTime = exitTime;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPosition() {
+        return position;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmployeeActivated() {
-        this.employeeActive = true;
-    }
-
-    public void setEmployeeInactivated() {
-        this.employeeActive = false;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public void updateEmployeeInfo(UpdateEmployeeDTO infoData){
@@ -125,16 +74,4 @@ public class Employee {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(id, employee.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
