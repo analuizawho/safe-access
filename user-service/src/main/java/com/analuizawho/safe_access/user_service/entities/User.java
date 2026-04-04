@@ -57,12 +57,12 @@ public abstract class User {
         this.password = password;
     }
 
-    public Boolean getUserActive() {
-        return userActive;
+    public void setUserActivated(){
+        this.userActive = true;
     }
 
-    public void setUserActive(Boolean userActive) {
-        this.userActive = userActive;
+    public void setUserInactivated(){
+        this.userActive = false;
     }
 
     @Override
