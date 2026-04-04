@@ -40,11 +40,6 @@ public class AdminService {
         return mapper.toInfo(admin);
     }
 
-    @Transactional
-    public List<InfoAdminDTO> listAdmin(){
-        var admin = repository.findAllByAdminActiveTrue();
-        return mapper.toList(admin);
-    }
 
     @Transactional
     public InfoAdminDTO updateAdmin(Long id, UpdateAdminDTO updateDTO){

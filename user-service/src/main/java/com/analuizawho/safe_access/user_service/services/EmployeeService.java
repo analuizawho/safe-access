@@ -9,8 +9,6 @@ import com.analuizawho.safe_access.user_service.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 public class EmployeeService {
 
@@ -40,12 +38,6 @@ public class EmployeeService {
     }
 
     @Transactional
-    public List<ListEmployeeDTO> listEmployee(){
-        var employee = repository.findAllByEmployeeActiveTrue();
-        return mapper.toList(employee);
-    }
-
-    @Transactional
     public InfoEmployeeDTO updateEmployee(Long id, UpdateEmployeeDTO updateDTO){
         var employee = repository.getReferenceById(id);
         employee.updateEmployeeInfo(updateDTO);
@@ -56,13 +48,13 @@ public class EmployeeService {
     @Transactional
     public void activateEmployee(Long id){
         var employee = repository.getReferenceById(id);
-        employee.setEmployeeActivated();
+        employee.setUserActivated();
     }
 
     @Transactional
     public void softDeleteEmployee(Long id) {
         var employee = repository.getReferenceById(id);
-        employee.setEmployeeInactivated();
+        employee.setUserInactivated();
     }
 
     @Transactional
